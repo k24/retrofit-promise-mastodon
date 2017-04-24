@@ -1,0 +1,5 @@
+rootProject.name = 'retrofit-promise-mastodon'
+include 'core'
+findProject(':core')?.name = 'retrofit-promise-mastodon'
+include 'sample'
+
