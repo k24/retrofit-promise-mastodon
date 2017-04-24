@@ -9,7 +9,7 @@ import java.util.Locale;
 public class App {
     public enum Scope {
         READ,
-        WEITE,
+        WRITE,
         FOLLOW;
 
         public static String toString(List<Scope> scopes) {
