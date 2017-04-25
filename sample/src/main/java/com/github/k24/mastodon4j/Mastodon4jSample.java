@@ -5,6 +5,7 @@ import com.github.k24.deferred.RxJava2DeferredFactory;
 import com.github.k24.mastodon4j.api.AppsApi;
 import com.github.k24.mastodon4j.model.App;
 import com.github.k24.mastodon4j.model.Status;
+import com.github.k24.mastodon4j.range.ResponseWithLink;
 import com.github.k24.retrofit2.converter.jsonic.JsonicConverterFactory;
 import com.github.k24.retrofit2.converter.success.Success;
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -13,7 +14,6 @@ import io.reactivex.schedulers.Schedulers;
 import jline.console.ConsoleReader;
 import net.arnx.jsonic.JSON;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Response;
 
 import java.util.Collections;
 import java.util.List;
@@ -199,10 +199,13 @@ public class Mastodon4jSample {
 
         apiAgent.timelines()
                 .homeTimeLine()
-                .then(new Deferred.OnResolved<Response<List<Status>>, Success>() {
+                .then(ResponseWithLink.<List<Status>>map())
+                .then(new Deferred.OnResolved<ResponseWithLink<List<Status>>, Success>() {
                     @Override
-                    public Success onResolved(Response<List<Status>> listResponse) throws Exception {
-                        log(JSON.encode(listResponse.body(), true));
+                    public Success onResolved(ResponseWithLink<List<Status>> listResponseWithLink) throws Exception {
+                        log("links: " + JSON.encode(listResponseWithLink.links(), true));
+                        log("--------");
+                        log(JSON.encode(listResponseWithLink.response().body(), true));
                         return Success.SUCCESS;
                     }
                 })
