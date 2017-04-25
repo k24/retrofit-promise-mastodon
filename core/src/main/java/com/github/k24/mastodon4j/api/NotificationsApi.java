@@ -2,6 +2,7 @@ package com.github.k24.mastodon4j.api;
 
 import com.github.k24.deferred.Deferred;
 import com.github.k24.mastodon4j.model.Notification;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -15,11 +16,11 @@ import java.util.List;
  */
 public interface NotificationsApi {
     @GET("notifications")
-    Deferred.Promise<List<Notification>> notifications();
+    Deferred.Promise<Response<List<Notification>>> notifications();
 
     @GET("notifications/{id}")
-    Deferred.Promise<List<Notification>> notification(@Path("id") long id);
+    Deferred.Promise<Response<List<Notification>>> notification(@Path("id") long id);
 
     @POST("notifications/clear")
-    Deferred.Promise<List<Notification>> clearNotifications();
+    Deferred.Promise<Response<List<Notification>>> clearNotifications();
 }

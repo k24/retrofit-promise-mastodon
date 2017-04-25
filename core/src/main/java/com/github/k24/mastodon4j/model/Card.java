@@ -1,6 +1,8 @@
 package com.github.k24.mastodon4j.model;
 
 /**
+ * https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#card
+ * <p>
  * Created by k24 on 2017/04/21.
  */
 public class Card {

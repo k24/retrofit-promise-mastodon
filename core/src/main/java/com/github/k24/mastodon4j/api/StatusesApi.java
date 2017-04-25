@@ -6,6 +6,7 @@ import com.github.k24.mastodon4j.model.Card;
 import com.github.k24.mastodon4j.model.Context;
 import com.github.k24.mastodon4j.model.Status;
 import com.github.k24.retrofit2.converter.success.Success;
+import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -37,16 +38,16 @@ public interface StatusesApi {
     Deferred.Promise<Card> card(@Path("id") long statusId);
 
     @GET("statuses/{id}/reblogged_by")
-    Deferred.Promise<List<Account>> rebloggedBy();
+    Deferred.Promise<Response<List<Account>>> rebloggedBy();
 
     @GET("statuses/{id}/reblogged_by")
-    Deferred.Promise<List<Account>> rebloggedBy(@QueryMap Map<String, Object> queries);
+    Deferred.Promise<Response<List<Account>>> rebloggedBy(@QueryMap Map<String, Object> queries);
 
     @GET("statuses/{id}/favourited_by")
-    Deferred.Promise<List<Account>> favouritedBy();
+    Deferred.Promise<Response<List<Account>>> favouritedBy();
 
     @GET("statuses/{id}/favourited_by")
-    Deferred.Promise<List<Account>> favouritedBy(@QueryMap Map<String, Object> queries);
+    Deferred.Promise<Response<List<Account>>> favouritedBy(@QueryMap Map<String, Object> queries);
 
     @FormUrlEncoded
     @POST("/statuses")

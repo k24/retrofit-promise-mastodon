@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
+ * https://github.com/tootsuite/documentation/blob/master/Using-the-API/API.md#status
+ * <p>
  * Created by k24 on 2017/04/20.
  */
 public class Status {

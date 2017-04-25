@@ -1,12 +1,7 @@
 package com.github.k24.mastodon4j;
 
 import com.github.k24.deferred.Deferred;
-import com.github.k24.mastodon4j.api.AccountsApi;
-import com.github.k24.mastodon4j.api.AppsApi;
-import com.github.k24.mastodon4j.api.NotificationsApi;
-import com.github.k24.mastodon4j.api.ReportsApi;
-import com.github.k24.mastodon4j.api.StatusesApi;
-import com.github.k24.mastodon4j.api.TimelinesApi;
+import com.github.k24.mastodon4j.api.*;
 import com.github.k24.mastodon4j.model.App;
 import com.github.k24.retrofit2.adapter.promise.PromiseCallAdapterFactory;
 import com.github.k24.retrofit2.converter.success.SuccessConverterFactory;
@@ -197,12 +192,44 @@ public class MastodonApiAgent {
         return ensureApi(AppsApi.class);
     }
 
+    public BlocksApi blocks() {
+        return ensureApi(BlocksApi.class);
+    }
+
+    public FavouritesApi favourites() {
+        return ensureApi(FavouritesApi.class);
+    }
+
+    public FollowRequestsApi followRequests() {
+        return ensureApi(FollowRequestsApi.class);
+    }
+
+    public FollowsApi follows() {
+        return ensureApi(FollowsApi.class);
+    }
+
+    public InstancesApi instances() {
+        return ensureApi(InstancesApi.class);
+    }
+
+    public MediaApi media() {
+        return ensureApi(MediaApi.class);
+    }
+
+    public MutesApi mutes() {
+        return ensureApi(MutesApi.class);
+    }
+
     public NotificationsApi notifications() {
         return ensureApi(NotificationsApi.class);
     }
 
     public ReportsApi reports() {
         return ensureApi(ReportsApi.class);
+    }
+
+    public SearchApi search() {
+        return ensureApi(SearchApi.class);
     }
 
     public StatusesApi statuses() {

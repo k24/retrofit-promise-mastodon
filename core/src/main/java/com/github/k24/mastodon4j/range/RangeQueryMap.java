@@ -26,17 +26,23 @@ public class RangeQueryMap extends AbstractMap<String, Object> {
     }
 
     @SuppressWarnings("WeakerAccess")
-    public static class Builder {
+    public static class MapBuilder {
         Long max_id;
         Long since_id;
+        Integer limit;
 
-        public Builder maxId(Long maxId) {
+        public MapBuilder maxId(Long maxId) {
             max_id = maxId;
             return this;
         }
 
-        public Builder sinceId(Long sinceId) {
+        public MapBuilder sinceId(Long sinceId) {
             since_id = sinceId;
+            return this;
+        }
+
+        public MapBuilder limit(Integer limit) {
+            this.limit = limit;
             return this;
         }
 
@@ -46,10 +52,13 @@ public class RangeQueryMap extends AbstractMap<String, Object> {
 
             if (max_id != null) map.put("max_id", max_id);
             if (since_id != null) map.put("since_id", since_id);
+            if (limit != null) map.put("limit", limit);
 
             return map;
         }
+    }
 
+    public static class Builder extends MapBuilder {
         public RangeQueryMap build() {
             return new RangeQueryMap(this);
         }

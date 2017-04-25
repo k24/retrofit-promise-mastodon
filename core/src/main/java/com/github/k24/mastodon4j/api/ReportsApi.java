@@ -2,6 +2,7 @@ package com.github.k24.mastodon4j.api;
 
 import com.github.k24.deferred.Deferred;
 import com.github.k24.mastodon4j.model.Report;
+import retrofit2.Response;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -22,10 +23,10 @@ import java.util.Set;
  */
 public interface ReportsApi {
     @GET("reports")
-    Deferred.Promise<List<Report>> reports();
+    Deferred.Promise<Response<List<Report>>> reports();
 
     @GET("reports")
-    Deferred.Promise<List<Report>> reports(@QueryMap Map<String, Object> queries);
+    Deferred.Promise<Response<List<Report>>> reports(@QueryMap Map<String, Object> queries);
 
     @FormUrlEncoded
     @POST("reports")

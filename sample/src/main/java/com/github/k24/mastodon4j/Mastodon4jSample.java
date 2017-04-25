@@ -13,6 +13,7 @@ import io.reactivex.schedulers.Schedulers;
 import jline.console.ConsoleReader;
 import net.arnx.jsonic.JSON;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Response;
 
 import java.util.Collections;
 import java.util.List;
@@ -198,10 +199,10 @@ public class Mastodon4jSample {
 
         apiAgent.timelines()
                 .homeTimeLine()
-                .then(new Deferred.OnResolved<List<Status>, Success>() {
+                .then(new Deferred.OnResolved<Response<List<Status>>, Success>() {
                     @Override
-                    public Success onResolved(List<Status> statuses) throws Exception {
-                        log(JSON.encode(statuses, true));
+                    public Success onResolved(Response<List<Status>> listResponse) throws Exception {
+                        log(JSON.encode(listResponse.body(), true));
                         return Success.SUCCESS;
                     }
                 })
@@ -213,7 +214,7 @@ public class Mastodon4jSample {
                 .converterFactory(JsonicConverterFactory.create())
                 .deferredFactory(deferredFactory)
                 .baseUrl(host == null ? null : MastodonLoggingApiAgent.buildBaseUrl(host))
-                .build(), HttpLoggingInterceptor.Level.BODY);
+                .build(), HttpLoggingInterceptor.Level.HEADERS);
     }
 
     private static String getArgOrEnv(String[] args, int index, String key) {
